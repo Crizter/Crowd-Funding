@@ -50,7 +50,10 @@ o build a crowdfunding platform using the PERN stack (PostgreSQL, Express.js, Re
 	•	Security Best Practices: Follow best practices for security (e.g., prevent SQL injection, XSS).
 
 
-TODO USER PROFILE PAGE
+TODO
+  - USER PROFILE PAGE REACT JS 
+- - API FOR USER PROFILE PAGE
+  
 
 
 

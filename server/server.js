@@ -10,6 +10,7 @@ import projects from './routes/projects.js'
 import dashboard from './routes/dashboard.js'
 import transactions from './routes/transactions.js'
 import comments from './routes/comments.js' 
+import users from './routes/users.js'
 const app  = express() ; 
 const port = process.env.BACKEND_PORT ; 
 const secretOrKey  = process.env.SECRETKEY
@@ -86,7 +87,8 @@ app.post('/login',  async (req,res) => {
     app.use('/projects', projects) ; 
     app.use('/dashboard',  dashboard  ) ; 
     app.use('/transactions',  transactions) ; 
-    app.use('/comments', comments )
+    app.use('/comments', comments ) ; 
+    app.use('/users', users) ; 
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`);

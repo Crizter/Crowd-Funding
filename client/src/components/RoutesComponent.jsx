@@ -25,7 +25,7 @@ function RoutesComponent() {
         <Route path="/login/dashboard/user-dashboard/:userId/*" element={<ProtectedRoutes element={Dashboard} />} /> 
         <Route path= "/login/home/:userId/*" element = {<ProtectedRoutes element={ Home}/>} />
         <Route path= "/login/view-project/*" element = {<ProtectedRoutes element = {SinglePage} /> } />
-        <Route path = "/login/user-profile/*" element = {<ProtectedRoutes element={UserProfile} /> } />
+        <Route path = "/login/user-profile/:userId/*" element = {<ProtectedRoutes element={UserProfile} /> } />
         
       </Routes>
   </Layout>
