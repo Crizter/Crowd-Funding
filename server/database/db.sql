@@ -3,8 +3,9 @@ DROP TABLE  IF EXISTS users  CASCADE ;
 
 CREATE TABLE users (
     id serial primary key  ,
-    email  VARCHAR(200) UNIQUE , 
-    password VARCHAR(200) 
+    name VARCHAR(45) NOT NULL, 
+    email  VARCHAR(200) UNIQUE NOT NULL, 
+    password VARCHAR(200) NOT NULL
 ) ; 
 
 CREATE TABLE projects (
@@ -39,3 +40,4 @@ CREATE TABLE comments (
     project_id INT REFERENCES projects(id) NOT NULL,
     comment VARCHAR(500) NOT NULL
 );
+
