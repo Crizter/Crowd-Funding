@@ -31,20 +31,23 @@ console.log('shite value', data);
     fetchData();
   }, [userId]);
 
+  // TODO ADDDING SCROLLING ANIMATION
+
   
 
 
   return (
     <>
-      <div className="text-6xl p-4">Welcome to the home.
-        <p className="text-xl p-3">
-        Support causes that matter most to you.
-        </p>
+    
+      {/* Heading  */}
+      <div className="text-6xl p-4">
+        Welcome to the home.
+        <p className="text-xl p-3">Support causes that matter most to you.</p>
       </div>
 
-      <div>
-     
-      </div>
+      
+
+      {/* DISPLAY ALL THE PROJECTS  */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
         {data.map((e) => (
           <div
@@ -59,7 +62,7 @@ console.log('shite value', data);
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
               <span>{e.description}</span>
             </p>
-  
+
             {/* Amount */}
             <div>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
@@ -68,14 +71,15 @@ console.log('shite value', data);
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                 Amount raised:<span> {e.amount_raised}</span>
               </p>
-  
+
               <p className="mb-3 font-light text-gray-700 dark:text-gray-400">
                 <span>
-                  User id :<span className="font-extrabold"> {e.id}</span> is organizing the fundraiser
+                  User id :<span className="font-extrabold"> {e.id}</span> is
+                  organizing the fundraiser
                 </span>
               </p>
             </div>
-  
+
             {/* Category */}
             <div className="relative z-0 mb-3">
               <input
@@ -92,21 +96,42 @@ console.log('shite value', data);
                 <span>Category: {e.category}</span>
               </label>
             </div>
-  
-           <ProgressBar amountRaised={e.amount_raised} totalAmount={e.funding_goal} />
-  
+
+            <ProgressBar
+              amountRaised={e.amount_raised}
+              totalAmount={e.funding_goal}
+            />
+
             <Link
               to={`/login/view-project?project_id=${e.id}`}
               className="mt-4 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Read more
             </Link>
-            <button onClick={() => { console.log(e)}}>
-            test
+            <button
+              onClick={() => {
+                console.log(e);
+              }}
+            >
+              test
             </button>
           </div>
-          
         ))}
+      </div>
+
+     {/* Add About Section */}
+     <div id="about" className="flex flex-col p-4 mt-16">
+        <h1 className="text-4xl mb-4">Our Aim</h1>
+        <p className="text-lg">
+          Our goal is to create a vibrant and empowering platform that bridges
+          the gap between innovative ideas and the support they need to thrive.
+          We aim to provide a space where creators can bring their dreams to
+          life, and backers can find and support projects that resonate with
+          their passions. By fostering a community of collaboration and
+          inspiration, we strive to make funding accessible, transparent, and
+          impactful for everyone involved. Together, we believe we can turn
+          ambitions into reality and make a lasting difference in the world.
+        </p>
       </div>
     </>
   );
