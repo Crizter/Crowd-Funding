@@ -24,16 +24,7 @@ app.use(passport.initialize()) ;
 
 // MIDDLEWARE FOR AUTHORIZATION CHECK 
 
-const authorizeToken = (req,res,next) => {
-    const userIdFromToken = req.user.id ; 
-    const userIdFromParams = req.query.userId ; 
-    
-    if(userIdFromParams !== userIdFromToken) { 
-        return res.status(402).json({message : 'Forbidden : You do not have access to this route '})
-    }
-    next() ; // if check passed, proceed to next route. 
 
-}
 
 // CONNECT TO THE DATABASE
 connectDB() ; 
@@ -54,8 +45,8 @@ const generateToken = (user) => {
 
 // REGISTER 
 app.post('/register', async (req,res)=> { 
-    const {email, password}  = req.body  ; 
-    const body = {email,password} ; 
+    const {email, password,name}  = req.body  ; 
+    const body = {email,password,name} ; 
     try {
        const result =  await registerUser(body) ; 
         res.status(result.status).json({ message: result.message });

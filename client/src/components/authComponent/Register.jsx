@@ -8,6 +8,7 @@ function Register() {
     const [password, setPassword] = useState(''); 
     const [message, setMessage] = useState(''); 
     const [loading, setLoading] = useState(false);
+    const [name, setName] = useState('') ;
     const navigate = useNavigate();
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -17,7 +18,7 @@ function Register() {
         setMessage('');
 
         try {
-            const response = await axios.post(`${BACKEND_URL}/register`, { email, password });
+            const response = await axios.post(`${BACKEND_URL}/register`, { email, password,name });
             setMessage('Registration successful! Redirecting to login...');
             setTimeout(() => {
                 navigate('/login');
@@ -34,6 +35,23 @@ function Register() {
             <h1 className="text-white text-3xl font-bold mb-8">Register</h1>
             <div className="w-full max-w-sm">
                 <form className="bg-gray-100 p-6 rounded-lg shadow-lg" onSubmit={handleSubmit}>
+                <div className="mb-5">
+                        <label
+                            className="block mb-2 text-sm font-medium text-gray-700"
+                            
+                        >
+                            Enter your username:
+                        </label>
+                        <input
+                            type="text"
+                            id="name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            placeholder="Enter your name"
+                            required
+                        />
+                    </div>
                     <div className="mb-5">
                         <label
                             className="block mb-2 text-sm font-medium text-gray-700"

@@ -24,7 +24,7 @@ export const connectDB = async () => {
 
 // STORE USER INFO 
 export const registerUser = async (body) => {
-    const { email, password } = body;
+    const { email, password,name } = body;
   
     try {
         const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]) ; 
@@ -33,7 +33,7 @@ export const registerUser = async (body) => {
         }
     
       const hashedPassword = await hashPassword(password, 10); 
-      await pool.query('INSERT INTO users (email, password) VALUES ($1, $2)', [email, hashedPassword]);
+      await pool.query('INSERT INTO users (email, password,name) VALUES ($1, $2,$3)', [email, hashedPassword,name]);
       return {status : 200 , message : 'User registered successfully.'}
     } catch (error) {
       cconsole.log('IN register function:', error.message);
