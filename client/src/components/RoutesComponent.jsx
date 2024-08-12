@@ -8,6 +8,7 @@ import Navbar from './NavbarComponent/Navbar.jsx';
 import Layout from './Layout.jsx';
 import Home from './Home/Home.jsx';
 import SinglePage from './Pages/SinglePage.jsx';
+import UserProfile from './UserProfile/UserProfile.jsx';
 
 
 
@@ -24,6 +25,8 @@ function RoutesComponent() {
         <Route path="/login/dashboard/user-dashboard/:userId/*" element={<ProtectedRoutes element={Dashboard} />} /> 
         <Route path= "/login/home/:userId/*" element = {<ProtectedRoutes element={ Home}/>} />
         <Route path= "/login/view-project/*" element = {<ProtectedRoutes element = {SinglePage} /> } />
+        <Route path = "/login/user-profile/*" element = {<ProtectedRoutes element={UserProfile} /> } />
+        
       </Routes>
   </Layout>
     </Router>
