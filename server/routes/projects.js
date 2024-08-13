@@ -1,21 +1,31 @@
 import express from 'express' ; 
 import {  pool } from '../database/db.js';
-
+import passport from 'passport' ; 
 const router = express.Router() ; 
 
 // CREATE PROJECT
-router.post('/create', async (req, res) => {
-    const { title, description, funding_goal, category, deadline } = req.body;
-    const creator_id = req.query.creator_id; 
+router.post('/create',passport.authenticate('jwt', {session : false}), async (req, res) => {
+    const { title, description, funding_goal, category, deadline, country } = req.body;
+    const userIdFromQuery = parseInt(req.query.userId);
+    const userIdFromToken = parseInt(req.user.id);
 
-    if (!title || !description || !funding_goal || !category || !deadline || !creator_id) {
+    if (!userIdFromQuery) {
+        return res.status(400).json({ message: "No user id passed" });
+      }
+      if (userIdFromQuery !== userIdFromToken) {
+        return res.status(403).json({
+          message: "Forbidden: You do not have access to this resource",
+        });
+      }
+
+    if (!title || !description || !funding_goal || !category || !deadline || !country) {
         return res.status(400).json({ message: 'Empty Field' });
     }
 
     try {
         await pool.query(
-            'INSERT INTO projects (title, description, funding_goal, category, deadline, creator_id) VALUES ($1, $2, $3, $4, $5, $6)', 
-            [title, description, funding_goal, category, deadline, creator_id]
+            'INSERT INTO projects (title, description, funding_goal, category, deadline, creator_id, country) VALUES ($1, $2, $3, $4, $5, $6,$7)', 
+            [title, description, funding_goal, category, deadline, userIdFromQuery,country]
         );
         res.status(201).json('Successfully created the post.');
     } catch (error) {
