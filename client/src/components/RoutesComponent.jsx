@@ -10,6 +10,8 @@ import Home from './Home/Home.jsx';
 import SinglePage from './Pages/SinglePage.jsx';
 import UserProfile from './UserProfile/UserProfile.jsx';
 import EditProfile from './UserProfile/EditProfile.jsx';
+import Category from './Projects/Category.jsx';
+
 
 
 
@@ -28,6 +30,7 @@ function RoutesComponent() {
         <Route path= "/login/view-project/*" element = {<ProtectedRoutes element = {SinglePage} /> } />
         <Route path = "/login/user-profile/:userId/*" element = {<ProtectedRoutes element={UserProfile} /> } />
         <Route path = "/login/edit-profile/:userId/*" element = {<ProtectedRoutes element={EditProfile} /> } />
+        <Route path = "/login/category-project/:userId/*" element = {<ProtectedRoutes element={Category}/>} />
       </Routes>
   </Layout>
     </Router>
