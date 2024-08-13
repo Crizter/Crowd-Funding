@@ -9,6 +9,7 @@ import Layout from './Layout.jsx';
 import Home from './Home/Home.jsx';
 import SinglePage from './Pages/SinglePage.jsx';
 import UserProfile from './UserProfile/UserProfile.jsx';
+import EditProfile from './UserProfile/EditProfile.jsx';
 
 
 
@@ -26,7 +27,7 @@ function RoutesComponent() {
         <Route path= "/login/home/:userId/*" element = {<ProtectedRoutes element={ Home}/>} />
         <Route path= "/login/view-project/*" element = {<ProtectedRoutes element = {SinglePage} /> } />
         <Route path = "/login/user-profile/:userId/*" element = {<ProtectedRoutes element={UserProfile} /> } />
-        
+        <Route path = "/login/edit-profile/:userId/*" element = {<ProtectedRoutes element={EditProfile} /> } />
       </Routes>
   </Layout>
     </Router>
