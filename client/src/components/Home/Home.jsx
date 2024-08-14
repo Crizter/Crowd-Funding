@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Link, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import ProgressBar from "../ProgressBar/ProgressBar.jsx";
-
+import Carousel from "../Pages/Carousel.jsx";
 function Home() {
   const { userId } = useParams();
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
@@ -58,12 +58,12 @@ console.log('shite value', data);
   }`}
 >
       {/* Heading  */}
-      <div className="text-6xl p-4">
+      <div className="text-6xl p-4 flex flex-col items-center">
         Welcome to the home.
-        <p className="text-xl p-3">Support causes that matter most to you.</p>
+        <p className="text-xl ">Support causes that matter most to you.</p>
       </div>
 
-      
+      <Carousel />
 
       {/* DISPLAY ALL THE PROJECTS  */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
@@ -119,28 +119,29 @@ console.log('shite value', data);
               amountRaised={e.amount_raised}
               totalAmount={e.funding_goal}
             />
-
-            <Link
+          <div className="flex flex-row  justify-around"> 
+          <Link
               to={`/login/view-project?project_id=${e.id}`}
               className="mt-4 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Read more
             </Link>
-            <button
-              onClick={() => {
-                console.log(e);
-              }}
+            <Link
+              to =""
+              className="mt-4 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              test
-            </button>
+            Donate now
+            </Link>
+          </div>
+          
           </div>
         ))}
       </div>
 
      {/* Add About Section */}
-     <div id="about" className="flex flex-col p-4 mt-16">
+     <div id="about" className="flex flex-col items-center p-4 py-3 mt-16 border w-9/12 ">
         <h1 className="text-4xl mb-4">Our Aim</h1>
-        <p className="text-lg">
+        <p className="text-lg ">
           Our goal is to create a vibrant and empowering platform that bridges
           the gap between innovative ideas and the support they need to thrive.
           We aim to provide a space where creators can bring their dreams to

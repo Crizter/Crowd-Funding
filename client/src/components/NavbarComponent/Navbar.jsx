@@ -93,6 +93,14 @@ function Navbar() {
                   Profile
                 </NavLink>
               </li>
+              <li>
+                <NavLink
+                  to={`/login/category-project/${userId}`}
+                  className={navLinkClass}
+                >
+                  Create a fund me
+                </NavLink>
+              </li>
             </ul>
           </div>
         </div>
