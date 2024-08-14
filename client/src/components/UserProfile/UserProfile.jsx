@@ -42,7 +42,7 @@ function UserProfile() {
 
   return (
     <div
-  className={` bg-gray-800  h-screen flex flex-col items-center transform transition-opacity duration-1000 ease-in-out ${
+  className={` bg-white   h-screen flex flex-col items-center transform transition-opacity duration-1000 ease-in-out ${
     isVisible ? "opacity-100" : "opacity-0"
   }`}
 >
@@ -73,7 +73,7 @@ function UserProfile() {
 
   {/* Add Create project button  */}
   <div className="flex flex-col relative mt-3  ">
-    <Link to = {`/login/create-project/${userId}`}>
+    <Link to = {`/login/category-project/${userId}`}>
     <button type="button" className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
         Create a fund me project.
     </button>

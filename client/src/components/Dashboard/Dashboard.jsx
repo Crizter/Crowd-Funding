@@ -28,7 +28,19 @@ function Dashboard() {
     const [projectIds , setProjectIds] = useState([]) ;
 
     const token = localStorage.getItem("token") ; // retrieve the token 
+    const [isVisible, setIsVisible] = useState(false);
 
+    useEffect(() => {
+      // Trigger the visibility after a delay when the component mounts
+      const timer = setTimeout(() => {
+        setIsVisible(true);
+      }, 300); // Adjust the delay as needed
+  
+      // Cleanup the timer on unmount
+      return () => clearTimeout(timer);
+  
+    }, []);
+  
     useEffect(() => { 
       const fetchData = async () => { 
           try {
@@ -72,6 +84,13 @@ function Dashboard() {
   }, [BACKEND_URL, userId, token]);
 
   return (
+    <div
+    className={` bg-white   h-screen flex flex-col items-center transform transition-opacity duration-1000 ease-in-out ${
+      isVisible ? "opacity-100" : "opacity-0"
+    }`}
+  >
+
+   
     <div className="flex flex-col items-center justify-center mt-3 p-4">
       <h1 className="mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Dashboard</h1>
 
@@ -96,6 +115,7 @@ function Dashboard() {
         ))} */}
         <AllTransactions key = {userId} userId = {userId} />
       </div>
+    </div> 
     </div>
   );
 }

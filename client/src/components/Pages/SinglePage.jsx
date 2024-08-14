@@ -9,6 +9,7 @@ function SinglePage() {
     const queryParams =  new URLSearchParams(location.search)
     const project_id = queryParams.get('project_id') ; 
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+    const [isVisible, setIsVisible] = useState(false);
     const [data, setData] = useState([]);
     const date = new Date() ; 
 
@@ -29,6 +30,17 @@ function SinglePage() {
         } ; fetchData() ;
     }, [project_id])
 
+  useEffect(() => {
+    // Trigger the visibility after a delay when the component mounts
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 300); // Adjust the delay as needed
+
+    // Cleanup the timer on unmount
+    return () => clearTimeout(timer);
+
+  }, []);
+
    
     const formatDate = (dateString) => {
         const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
@@ -38,6 +50,11 @@ function SinglePage() {
 
     return (
         <>
+        <div
+  className={` bg-white   h-screen flex flex-col items-center transform transition-opacity duration-1000 ease-in-out ${
+    isVisible ? "opacity-100" : "opacity-0"
+  }`}
+>
         <div className="flex justify-center items-center p-4 bg-green-100">
             <div className="max-w-3xl w-96 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <img
@@ -91,6 +108,7 @@ function SinglePage() {
         <div>
             <Comments />
 
+        </div>
         </div>
         </>
     );

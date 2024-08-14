@@ -8,8 +8,10 @@ function Home() {
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
   const [data, setData] = useState([]);
   const [progress, setPrgress] = useState() ;
+  const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
   const location = useLocation() ; 
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +32,18 @@ console.log('shite value', data);
 
     fetchData();
   }, [userId]);
+  
+
+  useEffect(() => {
+    // Trigger the visibility after a delay when the component mounts
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 300); // Adjust the delay as needed
+
+    // Cleanup the timer on unmount
+    return () => clearTimeout(timer);
+
+  }, []);
 
   // TODO ADDDING SCROLLING ANIMATION
 
@@ -38,7 +52,11 @@ console.log('shite value', data);
 
   return (
     <>
-    
+       <div
+  className={` bg-white   h-screen flex flex-col items-center transform transition-opacity duration-1000 ease-in-out ${
+    isVisible ? "opacity-100" : "opacity-0"
+  }`}
+>
       {/* Heading  */}
       <div className="text-6xl p-4">
         Welcome to the home.
@@ -132,6 +150,7 @@ console.log('shite value', data);
           impactful for everyone involved. Together, we believe we can turn
           ambitions into reality and make a lasting difference in the world.
         </p>
+      </div>
       </div>
     </>
   );
