@@ -106,39 +106,37 @@ function Home() {
 
         {/* FILTER AND SHOW ALL */}
 
-        <div>
-          <button
-            onClick={() => {
-              setSelectOption("Show All");  
-              filterChange("Show All");
-            }}
-          >
-            Show all
-          </button>
+              <div className="flex flex-col items-center mt-4 mb-8">
+        <button
+          onClick={() => {
+            setSelectOption("Show All");
+            filterChange("Show All");
+          }}
+          className="mb-4 px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition-all duration-300"
+        >
+          Show all
+        </button>
 
-          <div className="w-full mb-6">
-            <label
-              htmlFor="country"
-              className="block text-gray-700 font-medium mb-2"
-            ></label>
-            <select
-              id="options"
-              value={selectOption}
-              onChange={(e) => {
-                setSelectOption(e.target.value);
-                filterChange(e.target.value);
-              }}
-              className="w-full p-2 border border-gray-300 rounded-lg"
-            >
-              <option value="">Select category</option>
-              {options.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </div>
+        <div className="w-full">
+          <select
+            id="options"
+            value={selectOption}
+            onChange={(e) => {
+              setSelectOption(e.target.value);
+              filterChange(e.target.value);
+            }}
+            className="w-full p-3 bg-white border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition-all duration-300"
+          >
+            <option value="" disabled>Select category</option>
+            {options.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
         </div>
+      </div>
+
         {/* DISPLAY ALL THE PROJECTS  */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
           {data.map((e) => (
