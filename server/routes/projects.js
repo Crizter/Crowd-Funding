@@ -150,6 +150,28 @@ router.get('/viewAll',async(req,res) => {
     }
  })
 
+// FILTER OUT THE PROJECT 
+ router.get('/filter', async(req,res) => {
 
+    const category = req.query ; 
+    console.log('the category is ', category.selectOption);
+    
+    try {
+        const response = await pool.query('SELECT * FROM projects WHERE category = $1', [category.selectOption]) ; 
+        console.log(response.rows);
+        if(category.selectOption === 'Show All'){
+            const alternateResponse = await pool.query('SELECT * FROM projects') ; 
+            return res.status(200).json(alternateResponse.rows)
+        }
+        if(response.rows.length === 0 ) { 
+            return res.status(200).json(response.rows) ; 
+        }
+        res.status(200).json(response.rows) ; 
+
+    } catch (error) {
+         console.log(error.message);
+        res.status(500).json({message : `Error deleting the format. ${error.message}`}) ; 
+    }
+ })
 
 export default  router ;
