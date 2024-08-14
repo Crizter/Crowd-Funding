@@ -4,6 +4,7 @@ import passport from "passport";
 
 const router = express.Router();
 
+// GET USER DATA RELATED WITH USER
 router.get(
   "/data",
   passport.authenticate("jwt", { session: false }),
@@ -35,7 +36,7 @@ router.get(
     }
   }
 );
-
+// EDIT USER DATA 
 router.post(
     "/editData",
     passport.authenticate("jwt", { session: false }),
@@ -84,6 +85,21 @@ router.post(
     }
   );
   
+// GET USER ID FROM TOKEN 
+ router.get('/getId',passport.authenticate('jwt', {session : false}), async (req,res) => { 
+    const userIdFromToken = parseInt(req.user.id);
+    if (!userIdFromToken) {
+      return res.status(400).json({ message: "No user id passed" });
+    }
+
+    try {
+        res.status(200).json(userIdFromToken)  ;
+    } catch (error) {
+        console.error(error.message);
+        return res.status(500).json({ message: "Internal server error" });
+    }
+
+ })
 
 export default router ; 
 
