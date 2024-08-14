@@ -33,7 +33,7 @@ function RoutesComponent() {
         <Route path= "/login/view-project/*" element = {<ProtectedRoutes element = {SinglePage} /> } />
         <Route path = "/login/user-profile/:userId/*" element = {<ProtectedRoutes element={UserProfile} /> } />
         <Route path = "/login/edit-profile/:userId/*" element = {<ProtectedRoutes element={EditProfile} /> } />
-        <Route path = "/login/category-project/:userId/*" element = {<ProtectedRoutes element={Category}/>} />
+        <Route path = "/login/category-project/:userId/*" element = {<ProtectedRoutes element={Category}/>} /> // Create project page 
         <Route path = "/about-us/:userId" element = {<ProtectedRoutes element = {AboutUs} />}/>
       </Routes>
   </Layout>
