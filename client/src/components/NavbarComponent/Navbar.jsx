@@ -1,20 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-import { Link  , NavLink} from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { Link  ,useLocation,  NavLink} from 'react-router-dom';
+import axios from 'axios';
+
 function Navbar() {
-    const authToken = Cookies.get('authToken');
+    const token = localStorage.getItem("token");
+    const [userId, setUserId] = useState('') ;
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+    useEffect(() => { 
+        const fetchId = async () => { 
+            try {
+                const response = await axios.get(`${BACKEND_URL}/users/getId`, {
+                    headers : {
+                        Authorization : `Bearer ${token}`
+                    }
+                })
+                console.log(response.data);
+                
+                setUserId(response.data) ; 
+            } catch (error) {
+                console.error("Error creating project:", error.message);
+            }
+         } ;  fetchId()  
+    }, [BACKEND_URL, token])
+
 
     const hasJwt = () => {
         const token = localStorage.getItem("token");
         return token ? true : false;
     }
+    
    
     if (hasJwt()) {
         return (
             <>
             <button
-          onClick={(e) => {console.log()}}
+          onClick={() => {console.log(location)}}
         >check me for console. </button>
                 <nav className="bg-white border-gray-200 dark:bg-gray-900">
                     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -60,10 +81,10 @@ function Navbar() {
                                     <NavLink to="" className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Dashboard</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</NavLink>
+                                    <NavLink to = {`/login/home/${userId}`} className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About us</NavLink>
+                                    <NavLink to={`/about-us/${userId}`} className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About us</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to="" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact us</NavLink>
