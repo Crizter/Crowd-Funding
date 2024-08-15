@@ -11,6 +11,8 @@ function Home() {
   const [progress, setPrgress] = useState();
   const [isVisible, setIsVisible] = useState(false);
   const [selectOption, setSelectOption] = useState("");
+  
+  const [projectsToShow, setProjectsToShow] = useState(3);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -87,6 +89,11 @@ function Home() {
     }
   };
 
+  // Handle Load More button click
+  const handleLoadMore = () => {
+    setProjectsToShow((prev) => prev + 3); // Load 3 more projects
+  };
+
   return (
     <>
       <div
@@ -138,13 +145,15 @@ function Home() {
             </select>
           </div>
         </div>
+
+
       
         {/* DISPLAY ALL THE PROJECTS  */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-          {data.map((e) => (
+          {data.slice(0,projectsToShow).map((e) => (
             <div
               key={e.id}
-              className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+               className="max-w-sm p-6 bg-white hover:bg-blue-gray-200 transition ease-in-out duration-300 hover:-translate-y-1 hover:scale-105 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
             >
               <Link to={`/login/view-project/${e.id}`}>
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -211,6 +220,15 @@ function Home() {
           ))}
         </div>
 
+        {/* LOAD MORE BUTTON */}
+        {projectsToShow < data.length && (
+                <button
+                  onClick={handleLoadMore}
+                  className="mt-6 px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition-all duration-300"
+                >
+                  Load More
+                </button>
+              )}
         {/* Add About Section */}
         <div
           id="about"
