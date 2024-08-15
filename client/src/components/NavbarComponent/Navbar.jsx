@@ -39,7 +39,7 @@ function Navbar() {
 
   if (hasJwt()) {
     return (
-      <nav className="bg-gray-200 p-3  rounded-full m-8  border-gray-200 dark:bg-gray-900">
+      <nav className="bg-gray-200 p-3  hover:bg-blue-gray-200 transition ease-in-out duration-300 hover:-translate-y-1 hover:scale-x-110 hover:rounded-none rounded-full m-8  border-gray-200 dark:bg-gray-900">
         <div className="max-w-screen-xl  flex flex-wrap items-center justify-between mx-auto p-4">
           <NavLink
             to={`/login/home/${userId}`}
