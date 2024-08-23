@@ -12,7 +12,7 @@ import UserProfile from './UserProfile/UserProfile.jsx';
 import EditProfile from './UserProfile/EditProfile.jsx';
 import Category from './Projects/Category.jsx';
 import AboutUs from './Pages/AboutUs.jsx';
-
+import Chat from './Chat/Chat.jsx';
 
 
 function RoutesComponent() {
@@ -35,6 +35,8 @@ function RoutesComponent() {
         <Route path = "/login/edit-profile/:userId/*" element = {<ProtectedRoutes element={EditProfile} /> } />
         <Route path = "/login/category-project/:userId/*" element = {<ProtectedRoutes element={Category}/>} /> // Create project page 
         <Route path = "/about-us/:userId" element = {<ProtectedRoutes element = {AboutUs} />}/>
+        <Route path = "/chat/:userId" element = {<ProtectedRoutes element = {Chat} />}/>
+
       </Routes>
   </Layout>
     </Router>

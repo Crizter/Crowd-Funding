@@ -41,3 +41,8 @@ CREATE TABLE comments (
     comment VARCHAR(500) NOT NULL
 );
 
+CREATE TABLE messages (
+    id SERIAL PRIMARY KEY,               -- Unique identifier for each message, auto-incremented.
+    userId INTEGER REFERENCES users(id) NOT NULL,  -- References the `id` in the `users` table, ensuring the message is linked to a valid user.
+    message VARCHAR(500) NOT NULL       -- Stores the message content, with a maximum of 500 characters.
+);
