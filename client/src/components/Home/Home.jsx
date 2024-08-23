@@ -45,8 +45,8 @@ function Home() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`${BACKEND_URL}/projects/viewAll`);
-        console.log("the response data is ", response.data);
-        console.log("the data is ", data);
+        // console.log("the response data is ", response.data);
+        // console.log("the data is ", data);
         setData(response.data);
       } catch (error) {
         console.log(error.message);
@@ -55,7 +55,7 @@ function Home() {
       }
     };
 
-    console.log("shite value", data);
+    // console.log("shite value", data);
 
     fetchData();
   }, [userId]);
