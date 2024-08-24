@@ -19,9 +19,10 @@ const secretOrKey  = process.env.SECRETKEY
 // MIDDLEWARES 
 // Enable CORS for specific origin
 app.use(cors({
-  origin: 'https://crowd-funding-client-tawny.vercel.app',
+  origin: [`'https://crowd-funding-client-tawny.vercel.app'`],
    methods: ['GET', 'POST', 'PUT', 'DELETE'],
    allowedHeaders: ['Content-Type', 'Authorization'],
+   credentials : true ,
  }));
 app.use(express.static('public')) ; 
 app.use(urlencoded({ extended: true }));
@@ -38,7 +39,7 @@ app.use(passport.initialize()) ;
 // CONNECT TO THE DATABASE
 connectDB() ; 
 
-app.get('/api' , (req,res) => {  
+app.get('/' , (req,res) => {  
     res.json('hello') ; 
 }) ; 
 
