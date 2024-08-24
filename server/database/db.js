@@ -12,7 +12,7 @@ const {Pool} = pg ;
 //   // port: process.env.POSTGRES_PORT, // Add this if you have defined POSTGRES_PORT
 //   // database: process.env.POSTGRES_DATABASE,
 // });
-const pool = new Pool({
+export const pool = new Pool({
   connectionString: process.env.POSTGRES_URL,
   ssl: {
     rejectUnauthorized: false // Adjust based on your security requirements
