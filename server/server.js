@@ -12,19 +12,21 @@ import transactions from './routes/transactions.js'
 import comments from './routes/comments.js' 
 import users from './routes/users.js'
 const app  = express() ; 
-const port = process.env.BACKEND_PORT ; 
+const port = process.env.BACKEND_PORT || 3003 ;  
 const secretOrKey  = process.env.SECRETKEY
         
 
 // MIDDLEWARES 
-app.use(express.static('public')) ; 
-app.use(urlencoded({ extended: true }));
 // Enable CORS for specific origin
 app.use(cors({
- origin: 'https://crowd-funding-client-tawny.vercel.app',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+  origin: 'https://crowd-funding-client-tawny.vercel.app',
+   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+   allowedHeaders: ['Content-Type', 'Authorization'],
+ }));
+app.use(express.static('public')) ; 
+app.use(urlencoded({ extended: true }));
+
+
 
 app.use(express.json());
 app.use(passport.initialize()) ; 
@@ -37,7 +39,7 @@ app.use(passport.initialize()) ;
 connectDB() ; 
 
 app.get('/api' , (req,res) => {  
-    res.send('hello') ; 
+    res.json('hello') ; 
 }) ; 
 
 
