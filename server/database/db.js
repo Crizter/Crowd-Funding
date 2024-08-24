@@ -5,12 +5,18 @@ const {Pool} = pg ;
 
 
 // Create a new Pool instance using environment variables
-export const pool = new Pool({
-  user: process.env.POSTGRES_USER,
-  password: process.env.POSTGRES_PASSWORD,
-  host: process.env.POSTGRES_HOST,
-  port: process.env.POSTGRES_PORT, // Add this if you have defined POSTGRES_PORT
-  database: process.env.POSTGRES_DATABASE,
+// export const pool = new Pool({
+//   // user: process.env.POSTGRES_USER,
+//   // password: process.env.POSTGRES_PASSWORD,
+//   // host: process.env.POSTGRES_HOST,
+//   // port: process.env.POSTGRES_PORT, // Add this if you have defined POSTGRES_PORT
+//   // database: process.env.POSTGRES_DATABASE,
+// });
+const pool = new Pool({
+  connectionString: process.env.POSTGRES_URL,
+  ssl: {
+    rejectUnauthorized: false // Adjust based on your security requirements
+  }
 });
    
 export const connectDB = async () => { 
