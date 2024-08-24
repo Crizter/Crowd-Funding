@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt' ; 
+import bcrypt from 'bcryptjs' ; 
 
 export const hashPassword = async (myPlaintextPassword, salt) => { 
     const hash = await bcrypt.hash(myPlaintextPassword, salt) ; 
