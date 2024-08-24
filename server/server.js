@@ -19,11 +19,9 @@ const secretOrKey  = process.env.SECRETKEY
 // MIDDLEWARES 
 app.use(express.static('public')) ; 
 app.use(urlencoded({ extended: true }));
-// Enable CORS for all origins
-app.use(cors());
-// Alternatively, configure CORS for specific origins
+// Enable CORS for specific origin
 app.use(cors({
-  origin: 'https://crowd-funding-client-tawny.vercel.app',
+ origin: 'https://crowd-funding-client-tawny.vercel.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
