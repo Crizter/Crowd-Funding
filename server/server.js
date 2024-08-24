@@ -19,12 +19,13 @@ const secretOrKey  = process.env.SECRETKEY
 // MIDDLEWARES 
 // Enable CORS for specific origin
 app.use(cors({
-  origin: [`'https://crowd-funding-client-tawny.vercel.app'`],
-   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-   allowedHeaders: ['Content-Type', 'Authorization'],
-   credentials : true ,
- }));
-app.use(express.static('public')) ; 
+  origin: 'https://crowd-funding-client-tawny.vercel.app',  // Correct format
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+}));
+
+// app.use(express.static('public')) ; 
 app.use(urlencoded({ extended: true }));
 
 
