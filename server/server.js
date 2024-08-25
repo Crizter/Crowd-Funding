@@ -18,12 +18,13 @@ const secretOrKey  = process.env.SECRETKEY
 
 // MIDDLEWARES 
 // Enable CORS for specific origin
-app.use(cors({
-  origin: 'https://crowd-funding-client-k98jjisam-crizters-projects.vercel.app',  
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true,
-}));
+// app.use(cors({
+//   origin: 'https://crowd-funding-client-k98jjisam-crizters-projects.vercel.app',  
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+//   credentials: true,
+// }));
+  app.use(cors()) ;
 
 // app.use(express.static('public')) ; 
 app.use(urlencoded({ extended: true }));
