@@ -23,7 +23,7 @@ router.get('/user-dashboard', passport.authenticate('jwt', { session: false }), 
     try {
         const result = await pool.query('SELECT * FROM users WHERE id = $1', [userIdFromQuery]);
         if (result.rows.length === 0) {
-            return res.status(404).json({ message: 'User not found.' });
+            return res.status(404).json([]);
         }
         console.log(result.rows[0]);
         
