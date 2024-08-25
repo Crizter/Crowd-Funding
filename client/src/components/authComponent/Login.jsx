@@ -21,7 +21,8 @@ function Login() {
             });
            const {token , userId}  = response.data ;
           //  Store the token  in cookies 
-          Cookies.set('authToken', token, {expires : 2}) ; // expires in 2 days 
+          Cookies.set('authToken', token, { expires: 2, sameSite: 'None', secure: true });
+ // expires in 2 days 
           // Optionally, you could storeit in local storage as well
           localStorage.setItem('token', token);
             setTimeout(() => {
