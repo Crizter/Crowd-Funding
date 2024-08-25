@@ -55,8 +55,8 @@ router.get('/admin-dashboard', async (req, res) => {
  router.get('/getDashboardData',passport.authenticate('jwt', {session: false }), async(req,res) => { 
     const userIdFromToken = parseInt(req.user.id); // User ID from JWT payload
     const userIdFromQuery = parseInt(req.query.userId); // User ID from query parameters    
-    console.log('User ID from token:', typeof(userIdFromToken));
-    console.log('User ID from query:', typeof(userIdFromQuery));
+    console.log('User ID from token:',userIdFromToken, typeof(userIdFromToken));
+    console.log('User ID from query:',userIdFromQuery, typeof(userIdFromQuery));
     if(!userIdFromQuery) { 
         return res.status(400).json({message : 'No user ID provided.'}) ; 
 
@@ -70,7 +70,9 @@ router.get('/admin-dashboard', async (req, res) => {
         
         const body = await dashBoardFields(userIdFromQuery) ; 
         if(!body) { 
-            return res.status(400).json({message : 'No data found.'}) ; 
+            console.log(body);
+            
+            return res.status(400).json([]) ; 
         }
         console.log(body);
         res.status(200).json(body) ; 

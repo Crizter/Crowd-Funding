@@ -31,13 +31,13 @@ router.post('/payment', async (req,res) => {
 router.get('/all-payments', async (req,res) => { 
     const userId = req.query.userId ; 
     if (!userId) {
-        return res.status(400).json({ message: 'No project id passed' });
+        return res.status(400).json({ message: 'No user id passed' });
     }
     
     try {
         const response = await pool.query('SELECT * FROM  transactions WHERE user_id = ($1)', [userId])
         if (response.rows.length === 0) {
-            return res.status(204).json({ message: 'No data found' });
+            return res.status(204).json([]);
         }
         console.log('All transactions', response.rows);
         res.status(200).json(response.rows) ; 

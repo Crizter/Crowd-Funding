@@ -15,7 +15,6 @@ const app  = express() ;
 const port = process.env.BACKEND_PORT || 3003 ;  
 const secretOrKey  = process.env.SECRETKEY
         
-
 // MIDDLEWARES 
 // Enable CORS for specific origin
 // app.use(cors({
