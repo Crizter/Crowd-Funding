@@ -1,19 +1,7 @@
-// TODO IN DASHBOARD 
-// 1. SIDE NAVBAR  done 
-// 2. DASHBOARD HEADING 
-// 3. TOTAL DONATION
-    // 4. AVERAGE DONATION
-    // 5. TOTAL REVENUE
-    // 6. TOTAL VISITORS
-    // 7. REVENUE
-    // 8. ALL USERS WHO DONATED ON THAT PROJECT 
-    // 9. EXPORT DATA IN PDF
-
 
 import React, { useEffect, useState } from 'react' ;
 import { useNavigate, Link, useParams } from 'react-router-dom';
 import axios from 'axios' ;
-import Chart from '../Chart/Chart.jsx';
 import AllTransactions from './AllTransactions.jsx';
 
 
@@ -31,12 +19,10 @@ function Dashboard() {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-      // Trigger the visibility after a delay when the component mounts
       const timer = setTimeout(() => {
         setIsVisible(true);
-      }, 300); // Adjust the delay as needed
-  
-      // Cleanup the timer on unmount
+      }, 300); 
+
       return () => clearTimeout(timer);
   
     }, []);

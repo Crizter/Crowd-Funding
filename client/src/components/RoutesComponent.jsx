@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Register from './authComponent/Register.jsx';
 import Login from './authComponent/Login.jsx';
 import Dashboard from './Dashboard/Dashboard.jsx';
@@ -16,6 +16,7 @@ import AboutUs from './Pages/AboutUs.jsx';
 
 
 function RoutesComponent() {
+  
   return (
     
     <Router>
@@ -23,7 +24,8 @@ function RoutesComponent() {
           <Routes>
         {/* Authentication Routes */}
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />  
+        <Route path="/" element={<Login />} />  
+        <Route path="/login" element={<Login/>} />
              
         
 

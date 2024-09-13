@@ -13,7 +13,7 @@ const ProtectedRoutes = ({element : Element, ...rest}) =>{
     return <Navigate to ="/login" /> ; 
 
   }
-    // console.log(authToken);
+    console.log(authToken);
     
     console.log(hasJwt());
     

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useParams  ,Link} from "react-router-dom";
+import { useParams  ,Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import { FaUserCircle } from "react-icons/fa";
-
+// import passport from 'passport' ; 
 
 function UserProfile() {
   const [data, setData] = useState({});
@@ -10,7 +10,7 @@ function UserProfile() {
   const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
   const token = localStorage.getItem("token");
   const [isVisible, setIsVisible] = useState(false);
-
+  const navigate = useNavigate() ; 
   useEffect(() => {
     // Trigger the visibility after a delay when the component mounts
     const timer = setTimeout(() => {
@@ -40,6 +40,42 @@ function UserProfile() {
     fetchData();
   }, [BACKEND_URL, token, userId]);
 
+  // const handleLogout = async  () => { 
+  //   try {
+  //     const response  = await axios.delete(`${BACKEND_URL}/logout`, {
+  //       headers:{
+  //         Authorization:`Bearer ${token}`, 
+  //       }, 
+  //       withCredentials: true ,
+  //     })
+  //     console.log(response);
+      
+  //   //  if(response.status === '/login' ) { 
+  //   //    localStorage.removeItem(token)
+  //   //    navigate("/login")
+  //   //  }
+  //   } catch (error) {
+  //       console.error("Error logging out", error.message) ; 
+  //   }
+  // }
+  const handleLogout = async () => {
+    try {
+      const response = await axios.delete(`${BACKEND_URL}/logout`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.status === 200) {
+        localStorage.removeItem('token');
+  
+        // Navigate to login page
+        navigate("/login");
+      }
+    } catch (error) {
+      console.error("Error logging out:", error.message, error.response); // Log the error and response
+    }
+  };
+  
   return (
     <div
   className={` bg-white   h-screen flex flex-col items-center transform transition-opacity duration-1000 ease-in-out ${
@@ -91,6 +127,12 @@ function UserProfile() {
     <button type="button" className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
         Change password.
     </button>
+
+    <button onClick={handleLogout} type="button" className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+        Logout
+    </button>
+    
+
   </div>
 </div>
   );
