@@ -10,7 +10,7 @@ const options = {
     secretOrKey,
     algorithms: ['HS256'],
     jsonWebTokenOptions: { 
-      maxAge: '2d', // 2 days
+      maxAge: '365d', // 365 days
       clockTimestamp: Math.floor(Date.now() / 1000),
 
     },
