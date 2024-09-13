@@ -15,17 +15,17 @@ const app  = express() ;
 const port = process.env.BACKEND_PORT || 3003 ;  
 const secretOrKey  = process.env.SECRETKEY
         
-// MIDDLEWARES 
-const corsOptions = {
-  origin : 'https://crowd-funding-client-git-main-crizters-projects.vercel.app',
+// // MIDDLEWARES 
+// const corsOptions = {
+//   origin : 'https://crowd-funding-client-git-main-crizters-projects.vercel.app',
   
-  credentials : true, 
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
-  allowedHeaders: ['Content-Type', 'Authorization'],
-}
-  app.use(cors(corsOptions)) ;
+//   credentials : true, 
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+// }
+//   app.use(cors(corsOptions)) ;
 
-// app.use(cors())
+app.use(cors())
 app.use(urlencoded({ extended: true }));
 app.use(express.json());
 app.use(passport.initialize()) ; 
