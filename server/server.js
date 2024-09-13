@@ -17,7 +17,7 @@ const secretOrKey  = process.env.SECRETKEY
         
 // MIDDLEWARES 
 const corsOptions = {
-  origin : 'https://crowd-funding-client-7n0o2n1u0-crizters-projects.vercel.app',
+  origin : 'https://crowd-funding-client-alpha.vercel.app',
   
   credentials : true, 
   methods: ['GET', 'POST', 'PUT', 'DELETE'], 
