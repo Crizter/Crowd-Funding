@@ -27,8 +27,7 @@ function RoutesComponent() {
         <Route path="/" element={<Login />} />  
         <Route path="/login" element={<Login/>} />
              
-        
-
+    
         {/* * Protected Routes */}  
         <Route path="/login/dashboard/user-dashboard/:userId/*" element={<ProtectedRoutes element={Dashboard} />} /> 
         <Route path= "/login/home/:userId/*" element = {<ProtectedRoutes element={ Home}/>} />
